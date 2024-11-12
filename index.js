@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
+const MongooseError = mongoose.Error;
 mongoose.connect('mongodb://localhost:27017/visit-app', {
 	
 	useNewUrlParser: true,
@@ -48,6 +49,10 @@ app.get("/", (req, resp) => {
 	resp.send("App is Working");
 	
 });
+
+const message = "This is an error message";
+const err = new MongooseError(message);
+console.error(err);
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
